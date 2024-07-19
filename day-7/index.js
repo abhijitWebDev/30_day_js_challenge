@@ -75,5 +75,8 @@ for (let singlebook in book) {
     }
 }
 
+// Task 9 : Use object.keys and object.values to print the keys and values of the book object
+console.log(`The new keys of the objects are ${Object.keys(book)} and the values of the book are ${Object.values(book)}`);
+
 
 
