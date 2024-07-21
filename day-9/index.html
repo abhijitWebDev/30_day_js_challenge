@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom elements</title>
+</head>
+<body>
+    <h1 id="welcome" class="welcome">Welcome</h1>
+    <ul class="listname">
+        <li id="dayOne">day 1</li>
+        <li>day 2</li>
+        <li id="dayFour" >day 4</li>
+        <li>day 5</li>
+        <li>day 6</li>
+    </ul>
+    <p id="par">Welcome test</p>
+    <img id="img-01" src="https://images.pexels.com/photos/4400679/pexels-photo-4400679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Description of image" style="width: 300px; height: 200px;" />
+    <h2>Hello</h2>
+    <p id="par-mod">Text-para</p>
+    <button id="butt">Click me</button>
+
+    <script defer>
+        /* Activity 1: Selecting and manipulating elements */
+
+        // Task 1: Select an html element by its id and change its text.
+        let welcome = document.querySelector('#welcome');
+        welcome.innerHTML = 'how are you';
+
+        // Task 2: Select and html by its class and change its background color
+        let styleCol = document.querySelector('.welcome');
+        styleCol.style.backgroundColor = 'red';
+
+        /* Activity 2: Creating and appending elements */
+        // Task 3: Create a new div element with some text content and append it to the body
+        const newEl = document.createElement('div');
+        newEl.textContent = 'This is a new div element';
+
+        document.body.appendChild(newEl);
+        
+        // Task 4: Create a new Li element and add it to the existing ul list
+        const newLi = document.createElement('li');
+
+        // Add content to the the li element;
+        newLi.textContent="Tab 2";
+        console.log(newLi);
+
+        // get the ul element by id
+        const exsitUl = document.querySelector('.listname')
+       
+
+        // append the new li to the existing ul
+        exsitUl.appendChild(newLi);
+
+        /* Activity 3: Removing elements */
+        // Task 5: Select and html element and remove it from the dom
+        const el = document.querySelector('#par');
+
+        document.body.removeChild(el);
+
+        // Task 6: Remove the last child of a specific html element
+        if(exsitUl.lastChild) {
+            exsitUl.removeChild(exsitUl.lastElementChild);
+        }
+
+        /* Activity 4 : Modifying attributes and classes */
+
+        // Task 7: Select and html element and change one of its attributes (eg src of an image tag)
+        const img = document.querySelector('#img-01');
+        img.src ='https://images.pexels.com/photos/10147934/pexels-photo-10147934.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+
+        // Task 8 : Add and remove css class to and from html element
+        const newCl = document.querySelector('h2');
+        console.log(newCl);
+        newCl.classList.add('para-2');
+        // removing the class
+        newCl.classList.remove('para-2');
+
+        /* Activity 5: event handeling */
+        // Task 9 : Add a click listener to a button which changes text of a paragraph
+        const button = document.querySelector('#butt');
+        const paragraph = document.querySelector('#par-mod');
+
+        function clickHandler() {
+            paragraph.textContent = "This is a modified paragraph";
+        }
+
+        button.addEventListener('click', clickHandler);
+
+        // Task 10: Add a mouseover listener to a element that changes its border color
+        function colorChange() {
+            button.style.borderColor = 'red'
+
+        }
+        button.addEventListener('mouseover', colorChange);
+
+
+
+        
+        
+
+
+
+    </script>
+</body>
+</html>
