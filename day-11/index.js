@@ -109,7 +109,7 @@ fetchData(apiUrl)
 .then(data => {
     console.log('Data fetched successfully', data);
 }).catch(error => {
-    console.log('An error occured:', error);
+    console.error('An error occured:', error);
 })
 
 // Task 7 :  Use the fetch Api to get data from a public api and log the data to the console using async await
@@ -171,3 +171,51 @@ Promise.race([promise1, promise2, promise3])
 }).catch((error) => {
     console.error('one of promises got rejected', error);
 })
+
+const sentence = 'I am a bachelor with amazing view';
+
+// const vowels = ['a', 'e', 'i', 'o', 'u']
+
+// const countVowels = (str, vowels) => {
+//     let count = 0;
+//     for(let char of str.toLowerCase()) {
+//         if(vowels.includes(char)) {
+//             count++;
+//         }
+//     }
+//     return count;
+// }
+
+// const numberOfVowels = countVowels(sentence, vowels);
+// console.log(numberOfVowels);
+
+// // flatten object
+// const flattenObject = (obj, parent='', res ={}) => {
+//     for(let key in obj){
+//     if(obj.hasOwnProperty(key)) {
+//         let propName = parent ? parent + '.' + key : key
+//         if(typeof obj[key] === 'object' && obj[key] !== null && !Array.isArray(obj[key])) {
+//             flattenObject(obj[key], propName, res);
+//         } else {
+//             res[propName] = obj[key];
+//         }
+//     }
+// }
+//     return res;
+// }
+
+// const nestedObject = {
+//     a: 1,
+//     b: {
+//         c: 2,
+//         d: {
+//             e:3,
+//             f:4,
+//         }
+//     },
+//     g:5
+// };
+
+
+// const flatObject = flattenObject(nestedObject);
+// console.log(flatObject);
