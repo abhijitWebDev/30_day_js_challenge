@@ -73,7 +73,7 @@ console.log(matchesThree); // Output: [ 'Hello', 'World', 'This', 'Test', 'Some'
 // Example usage:
 extractEmailParts("example@domain.com");
 
-/* Activity 3: Assertion and boundaries */
+/* Activity 4: Assertion and boundaries */
 
 // Task 7: Write a regular expression to match a word , only if it is at the begining of the string. log the matches
 const str = "example word at the beginning";
