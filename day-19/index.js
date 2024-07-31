@@ -92,7 +92,7 @@ if (match) {
   console.log("No match found at the end of the string.");
 }
 
-/* Activity 4: Practical application */
+/* Activity 5: Practical application */
 // Task 9: Write a regular expression to validate a simple password(must include atleast one upper case letter, on lowercase letter, one digit and one special charecter), log the result
 function validatePassword(password) {
     const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
