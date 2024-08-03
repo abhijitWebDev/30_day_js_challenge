@@ -136,7 +136,7 @@ function validPar(s) {
 }
 
 // Example usage:
-console.log(validPar("()")); // true
+console.log(validPar("(",")")); // true
 console.log(validPar("()[]{}")); // true
 console.log(validPar("(]")); // false
 console.log(validPar("([)]")); // false
