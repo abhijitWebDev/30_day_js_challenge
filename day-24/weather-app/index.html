@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="path/to/weather-icons.css"> <!-- Add this line if using Weather Icons -->
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <div class="weather-info">
+            <h2>Current Weather</h2>
+            <p>Location: <span id="location"></span></p>
+            <p>Temperature: <span id="temperature"></span> °C</p>
+            <p>Weather: <span id="weather"></span></p>
+            <i id="weather-icon" class="wi"></i> <!-- Placeholder for weather icon -->
+        </div>
+        <div class="forecast">
+            <h2>Weather Forecast</h2>
+            <ul id="forecast-list">
+                <!-- Forecast items will be dynamically added here -->
+            </ul>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Enter city name">
+            <button id="search-button">Search</button>
+        </div>
+    </div>
+    <script type="module" src="./index.js" defer></script>
+</body>
+</html>
