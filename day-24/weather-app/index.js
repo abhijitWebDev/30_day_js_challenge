@@ -33,14 +33,15 @@ const displayData = (data) => {
     // Set weather icon based on condition
     const condition = data.current.condition.text.toLowerCase();
     const conditionNew = data.current.condition.icon;
-    if (condition.includes("sunny")) {
-        weatherIcon.src = conditionNew;
-    } else if (condition.includes("rain")) {
-        weatherIcon.src = conditionNew;
-    } else if (condition.includes("cloud")) {
-        weatherIcon.src = conditionNew;
-    } else {
-        weatherIcon.src= conditionNew; // Default icon
+    if (condition.includes("patchy rain nearby")) {
+        document.body.style.backgroundImage = "url(https://cdn.weatherapi.com/weather/64x64/night/176.png)";
+    }  else if(condition.includes("clear")) {
+        document.body.style.backgroundImage = "url(https://cdn.weatherapi.com/weather/64x64/night/113.png)"
+    } else if(condition.includes("sunny")) {
+        document.body.style.backgroundImage = "url(https://cdn.weatherapi.com/weather/64x64/day/113.png)"
+    }
+     else {
+        document.body.style.backgroundImage = "url(https://cdn.weatherapi.com/weather/64x64/night/176.png)";; // Default icon
     }
 };
 
