@@ -1,0 +1,46 @@
+.movie-card {
+    display: inline-block;
+    width: 300px; /* Set the width of each card */
+    background-color: #f9f9f9;
+    border: 1px solid #e1e1e1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.movie-card h2 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.movie-card p {
+    font-size: 1em;
+    color: #333;
+}
+
+.movie-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal button {
+    margin-top: 20px;
+}
