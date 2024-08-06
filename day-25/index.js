@@ -1,6 +1,6 @@
 import config from './config.js';
 
-console.log(config.TMDB_API_KEY);
+
 
 const options = {
     method: 'GET',
