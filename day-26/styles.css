@@ -1,0 +1,18 @@
+/* Example styles */
+#messages li {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+#messages li:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+#messages li:nth-child(even) {
+    background-color: #e1e1e1;
+}
+
+.username {
+    font-weight: bold;
+    color: #333;
+}
