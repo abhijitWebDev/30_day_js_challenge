@@ -1,34 +1,40 @@
-import { WebSocket, WebSocketServer } from "ws";
+import WebSocket, { WebSocketServer } from 'ws';
 
-const server = new WebSocketServer({port: 8080})
+const wss = new WebSocketServer({ port: 8080 });
 
-server.on("connection", function connection(ws)  {
-    console.log("client connected")
-    ws.on("message", (data) => {
-        const {type, message, username} = JSON.parse(data);
-        console.log(`Received ${type}: ${message} from ${username}`);
+wss.on('connection', function connection(ws) {
+  console.log('Client connected');
 
-        if(type === "message") {
-            // here we will broadcast to all the clients
-            server.clients.forEach((client) => {
-                if(client !== ws && client.readyState === WebSocket.OPEN) {
-                    client.send(JSON.stringify({type: "message" , message, username}))
-                }
-            });
-        }
+  ws.on('message', function message(data, isBinary) {
+    const parsedData = JSON.parse(data);
+    const { type, message, username } = parsedData;
+
+    console.log(`Received ${type}: ${message} from ${username}`);
+
+    wss.clients.forEach(function each(client) {
+      if (client !== ws && client.readyState === WebSocket.OPEN) {
+        client.send(JSON.stringify({ type: 'message', message, username }), {
+          binary: isBinary,
+        });
+      }
     });
-     ws.on("close", () => {
-        console.log("Connection closed");
-      });
-    
-      ws.on("error", (error) => {
-        console.error("Websocket error: " + error);
-      });
-      ws.send(
-        JSON.stringify({
-          type: "message",
-          username: "server",
-          message: "Welcome to the chat!",
-        })
-      );
-})
+  });
+
+  ws.on('close', () => {
+    console.log('Client disconnected');
+  });
+
+  ws.on('error', (error) => {
+    console.error('WebSocket error: ', error);
+  });
+
+  ws.send(
+    JSON.stringify({
+      type: 'message',
+      username: 'Server',
+      message: 'Welcome to the chat!',
+    })
+  );
+});
+
+console.log('WebSocket server is running on ws://localhost:8080');
