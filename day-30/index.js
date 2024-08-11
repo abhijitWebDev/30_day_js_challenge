@@ -302,6 +302,7 @@ if (currentUser) {
 
 function logout() {
   localStorage.removeItem('currentUser');
+  localStorage.removeItem('posts')
 
   currentUser = null;
 
