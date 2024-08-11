@@ -1,43 +1,83 @@
-// User Authentication Script
-const loginForm = document.getElementById('loginForm');
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+document.getElementById('login-form').addEventListener('submit', function(event) {
+    event.preventDefault();
     const username = document.getElementById('username').value;
-    // Handle user login and store user information (you can use localStorage or sessionStorage)
-    console.log(`User logged in: ${username}`);
+    const password = document.getElementById('password').value;
+
+    if (username && password) {
+        localStorage.setItem('user', JSON.stringify({ username }));
+        alert('Login successful!');
+        window.location.hash = 'posts';
+    } else {
+        alert('Please enter username and password.');
+    }
 });
 
-// Sample array of posts
-let posts = [];
+document.getElementById('post-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const text = document.getElementById('post-text').value;
+    const image = document.getElementById('post-image').value;
+    const user = JSON.parse(localStorage.getItem('user'));
 
-// Post Creation Script
-const postForm = document.getElementById('postForm');
-postForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const postContent = document.getElementById('postText').value;
-    const newPost = { content: postContent, user: 'current_user', timestamp: new Date() };
-    posts.push(newPost);
-    displayPosts(posts);
+    const post = {
+        text,
+        image,
+        username: user ? user.username : 'Anonymous',
+        timestamp: new Date().toLocaleString(),
+        likes: 0,
+        comments: []
+    };
+
+    posts.push(post);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    displayPosts();
+    this.reset();
 });
 
-// Post Display Script
-function displayPosts(posts) {
-    const postFeed = document.getElementById('postFeed');
+function displayPosts() {
+    const postFeed = document.getElementById('post-feed');
     postFeed.innerHTML = '';
-    posts.forEach(post => {
-        const postElement = document.createElement('div');
-        postElement.textContent = `${post.user} - ${post.content} - ${post.timestamp}`;
+
+    posts.forEach((post, index) => {
+        const postElement = createPostElement(post, index);
         postFeed.appendChild(postElement);
     });
 }
 
-// Post Interaction Script
-function handleLike(postId) {
-    // Handle liking a post
-    console.log(`Liked post with ID: ${postId}`);
+function createPostElement(post, index) {
+    const postElement = document.createElement('div');
+    postElement.className = 'post';
+    postElement.innerHTML = `
+        <div class="post-header">
+            <strong>${post.username}</strong> <span>${post.timestamp}</span>
+        </div>
+        <p>${post.text}</p>
+        ${post.image ? `<img src="${post.image}" alt="Post Image">` : ''}
+        <div class="post-footer">
+            <button class="like-button" data-index="${index}">Like (${post.likes})</button>
+            <button class="comment-button" data-index="${index}">Comment (${post.comments.length})</button>
+        </div>
+    `;
+    return postElement;
 }
 
-function handleComment(postId, comment) {
-    // Handle adding comments to a post
-    console.log(`Comment added to post with ID ${postId}: ${comment}`);
-}
+document.getElementById('post-feed').addEventListener('click', function(event) {
+    if (event.target.classList.contains('like-button')) {
+        const index = event.target.getAttribute('data-index');
+        posts[index].likes++;
+    }
+
+    if (event.target.classList.contains('comment-button')) {
+        const index = event.target.getAttribute('data-index');
+        const comment = prompt('Enter your comment:');
+        if (comment) {
+            posts[index].comments.push(comment);
+        }
+    }
+
+    localStorage.setItem('posts', JSON.stringify(posts));
+    displayPosts();
+});
+
+displayPosts();
